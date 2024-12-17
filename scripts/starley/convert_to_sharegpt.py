@@ -97,8 +97,13 @@ def build_user_and_assistant(row, mode: Literal["sft", "dpo"]):
 def build_sft_conversation(row):
     conversation = {
         "id": row['ID'],
-        "conversations": build_user_and_assistant(row, mode="sft"),
-        "system": build_system_prompt(row)
+        "messages": [
+            {
+                "role": "system",
+                "content": build_system_prompt(row)
+            },
+            *build_user_and_assistant(row, mode="sft")
+        ]
     }
     return conversation
 
