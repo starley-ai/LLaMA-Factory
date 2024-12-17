@@ -26,10 +26,7 @@ def build_system_prompt(row):
 
 # 注意
 出力は必ず{row['AIの名前']}の返答のみであること"""
-    return {
-        "from": "system",
-        "value": system_prompt
-    }
+    return system_prompt
 
 def build_user_and_assistant(row, mode: Literal["sft", "dpo"]):
     ai_name = row['AIの名前']
@@ -100,10 +97,8 @@ def build_user_and_assistant(row, mode: Literal["sft", "dpo"]):
 def build_sft_conversation(row):
     conversation = {
         "id": row['ID'],
-        "conversations": [
-            build_system_prompt(row),
-            *build_user_and_assistant(row, mode="sft"),
-        ]
+        "conversations": build_user_and_assistant(row, mode="sft"),
+        "system": build_system_prompt(row)
     }
     return conversation
 
@@ -111,10 +106,8 @@ def build_sft_conversation(row):
 def build_dpo_conversation(row):
     conversation = {
         "id": row['ID'],
-        "conversations": [
-            build_system_prompt(row),
-            *build_user_and_assistant(row, mode="dpo"),
-        ],
+        "conversations": build_user_and_assistant(row, mode="dpo"),
+        "system": build_system_prompt(row),
         "chosen": {
             "from": "assistant",
             "value": row['chosen']

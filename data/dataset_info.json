@@ -1,4 +1,30 @@
 {
+  "20241217_cotomo_sft": {
+    "file_name": "20241217_cotomo_sft.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations",
+    },
+    "tags": {
+      "role_tag": "from",
+      "content_tag": "value",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "20241217_cotomo_dpo": {
+    "file_name": "20241217_cotomo_dpo.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations"
+    },
+    "tags": {
+      "role_tag": "from",
+      "content_tag": "value",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
   "identity": {
     "file_name": "identity.json"
   },
