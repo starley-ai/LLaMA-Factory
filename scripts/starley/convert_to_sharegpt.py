@@ -87,8 +87,8 @@ def build_user_and_assistant(row, mode: Literal["sft", "dpo"]):
     for msg in all_messages:
         role = "assistant" if msg["speaker"] == "ai" else "user"
         formatted_messages.append({
-            "from": role,
-            "value": msg["message"]
+            "role": role,
+            "content": msg["message"]
         })
 
     return formatted_messages
